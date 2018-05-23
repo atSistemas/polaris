@@ -33,3 +33,5 @@ target/
 \.project
 =======
 >>>>>>> e973cf54b723e162591babadd0da3a5f0afae060
+
+\.springBeans

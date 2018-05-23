@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM FROM anapsix/alpine-java
 
 COPY assets/entrypoint.sh /app/entrypoint.sh
 

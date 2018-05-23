@@ -1,1 +1,13 @@
 server.port: 8080
+
+logging:
+#  file: logs/ci-manager.log
+  level:
+    org.springframework.web: info
+    com.atsistemas: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
