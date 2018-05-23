@@ -33,13 +33,17 @@
 		<build-helper-maven-plugin.version>3.0.0</build-helper-maven-plugin.version>
 		<springfox.version>2.7.0</springfox.version>
 		<junit.version>4.12</junit.version>
-		<registry.prefix></registry.prefix>
+		<registry.prefix>atsistemas</registry.prefix>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -76,6 +80,7 @@
 			<artifactId>jackson-datatype-threetenbp</artifactId>
 			<version>2.6.4</version>
 		</dependency>
+		
 	</dependencies>
 
 
@@ -119,6 +124,7 @@
 					</execution>
 				</executions>
 			</plugin>
+			
 			<plugin>
 				<groupId>com.spotify</groupId>
 				<artifactId>dockerfile-maven-plugin</artifactId>
@@ -128,13 +134,13 @@
 						<id>default</id>
 						<goals>
 							<goal>build</goal>
-							<goal>push</goal>
+<!-- 							<goal>push</goal> -->
 						</goals>
 					</execution>
 				</executions>
 				<configuration>
 					<contextDirectory>${project.build.directory}</contextDirectory>
-					<repository>${registry.prefix}atsistemas.orion/${project.artifactId}</repository>
+					<repository>${registry.prefix}/${project.artifactId}</repository>
 					<tag>${project.version}</tag>
 				</configuration>
 			</plugin>

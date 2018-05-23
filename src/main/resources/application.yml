@@ -1,5 +1,7 @@
 server.port: 8080
 
+polaris.app.version: @project.version@
+
 logging:
 #  file: logs/ci-manager.log
   level:
