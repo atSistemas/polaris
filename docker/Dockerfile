@@ -1,13 +1,23 @@
-FROM anapsix/alpine-java
+FROM centos:7
+
+ENV JAVA_VERSION 1.8.0
 
 COPY assets/entrypoint.sh /app/entrypoint.sh
 
-RUN addgroup -S springboot && \
-	adduser -S -g springboot springboot && \
+# Upgrading system
+RUN yum -y upgrade
+
+# Downloading & Config Java 8
+RUN yum update -y
+RUN yum install -y java-$JAVA_VERSION-openjdk java-$JAVA_VERSION-openjdk-devel && \
+	yum clean all
+  
+RUN groupadd springboot && \
+	useradd -m -g springboot springboot && \
  	chmod 555 /app/entrypoint.sh
  	
-#RUN apk --no-cache add curl tzdata
-#RUN cp /usr/share/zoneinfo/Europe/Madrid /etc/localtime && echo "Europe/Madrid" >  /etc/timezone
+RUN cp /usr/share/zoneinfo/Europe/Madrid /etc/localtime && \
+	echo "Europe/Madrid" >  /etc/timezone
 
 # service port
 EXPOSE 8080
@@ -21,7 +31,7 @@ WORKDIR /app
 USER springboot
 
 
-
 COPY spring-boot.jar /app/spring-boot.jar
 
 ENTRYPOINT ["./entrypoint.sh"]
+
